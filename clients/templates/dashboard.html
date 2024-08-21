@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | MedFile{% endblock %}
+
+{% block content %}
+<h1>Doctor's Dashboard</h1>
+
+<div class="dashboard-container">
+    <section class="dashboard-section">
+        <h2>Calendar</h2>
+        <p>View your upcoming appointments and events.</p>
+        <!-- Static example calendar content -->
+        <p>No events scheduled.</p>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>Client Appointments</h2>
+        <p>Manage your client appointments.</p>
+        <!-- Static example list of appointments -->
+        <ul>
+            <li>August 22, 2024 - John Doe - Regular Checkup</li>
+            <li>August 25, 2024 - Jane Smith - Follow-up</li>
+        </ul>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>Create Client File</h2>
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <label for="client_name">Client Name:</label><br>
+            <input type="text" id="client_name" name="client_name" required><br><br>
+
+            <label for="contact_info">Contact Information:</label><br>
+            <input type="text" id="contact_info" name="contact_info" required><br><br>
+
+            <!-- Add more fields as needed -->
+
+            <button type="submit">Create Client File</button>
+        </form>
+    </section>
+</div>
+
+{% endblock %}
