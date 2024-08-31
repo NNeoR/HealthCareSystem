@@ -3,41 +3,77 @@
 {% block title %}Dashboard | MedFile{% endblock %}
 
 {% block content %}
-<h1>Doctor's Dashboard</h1>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'calendar' %}">
+                            <i class="fas fa-calendar-alt"></i> Calendar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointments' %}">
+                            <i class="fas fa-notes-medical"></i> Appointments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'clients' %}">
+                            <i class="fas fa-user"></i> Clients
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-<div class="dashboard-container">
-    <section class="dashboard-section">
-        <h2>Calendar</h2>
-        <p>View your upcoming appointments and events.</p>
-        <!-- Static example calendar content -->
-        <p>No events scheduled.</p>
-    </section>
+        <!-- Main Content -->
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard Overview</h1>
+            </div>
 
-    <section class="dashboard-section">
-        <h2>Client Appointments</h2>
-        <p>Manage your client appointments.</p>
-        <!-- Static example list of appointments -->
-        <ul>
-            <li>August 22, 2024 - John Doe - Regular Checkup</li>
-            <li>August 25, 2024 - Jane Smith - Follow-up</li>
-        </ul>
-    </section>
+            <!-- System Stats -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Weekly Clients</h5>
+                            <p class="card-text">Number of clients attended this week: <strong>15</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Monthly Clients</h5>
+                            <p class="card-text">Number of clients attended this month: <strong>50</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Messages/Notifications</h5>
+                            <p class="card-text">You have <strong>3</strong> new messages from clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <section class="dashboard-section">
-        <h2>Create Client File</h2>
-        <form action="#" method="POST">
-            {% csrf_token %}
-            <label for="client_name">Client Name:</label><br>
-            <input type="text" id="client_name" name="client_name" required><br><br>
-
-            <label for="contact_info">Contact Information:</label><br>
-            <input type="text" id="contact_info" name="contact_info" required><br><br>
-
-            <!-- Add more fields as needed -->
-
-            <button type="submit">Create Client File</button>
-        </form>
-    </section>
+            <!-- Notifications and Messages -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Recent Notifications</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">John Doe has confirmed his appointment for August 22, 2024.</li>
+                        <li class="list-group-item">Jane Smith sent a message: "Can I reschedule my follow-up?"</li>
+                        <li class="list-group-item">New client registered: Mark Johnson.</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
-
 {% endblock %}

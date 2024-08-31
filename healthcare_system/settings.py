@@ -27,11 +27,38 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Database configuration
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'medsystem',  # Replace with your database name
+        'USER': 'postgres',  # Replace with your database user
+        'PASSWORD': '57642',  # Replace with your database password
+        'HOST': 'localhost',  # Or your database host
+        'PORT': '5432',  # Default PostgreSQL port
+    }
+}
+#mail server
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # E.g., 'smtp.gmail.com'
+EMAIL_PORT = 587  # Or 465 for SSL
+EMAIL_USE_TLS = True  # Use True for TLS, False for SSL
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'neotshivhangani@gmail.com'
+EMAIL_HOST_PASSWORD = 'aghn gxux tzer pqwl'
+DEFAULT_FROM_EMAIL = 'neotshivhangani@gmail.com'
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Or RabbitMQ, etc.
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 # Application definition
-
 INSTALLED_APPS = [
     'clients',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,12 +70,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'healthcare_system.urls'
 
@@ -69,17 +98,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'healthcare_system.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation

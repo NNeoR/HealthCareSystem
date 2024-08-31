@@ -3,25 +3,30 @@
 {% block title %}Home | MedFile{% endblock %}
 
 {% block content %}
-<h2>{{ greeting }}</h2>
-<p>{{ quote }}</p>
-<p>Today's date: {{ current_date|date:"F j, Y" }}</p>
-<p>Weather: {{ weather_info }}</p>
+<div class="container">
+    <h2>{{ greeting }}</h2>
+    <p>{{ quote }}</p>
+    <p>Today's date: {{ current_date|date:"F j, Y" }}</p>
+    <p>Weather: {{ weather_info }}</p>
 
-{% if error %}
-<p style="color: red;">{{ error }}</p>
-{% endif %}
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
 
-<h2>Doctor Login</h2>
-<form action="{% url 'home' %}" method="POST">
-    {% csrf_token %}
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
+    <h2>Doctor Login</h2>
+    <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
 
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
 
-    <button type="submit">Login</button>
-</form>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
 {% endblock %}
-

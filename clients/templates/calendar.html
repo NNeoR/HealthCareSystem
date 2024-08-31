@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Calendar | MedFile{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'calendar' %}">
+                            <i class="fas fa-calendar-alt"></i> Calendar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'appointments' %}">
+                            <i class="fas fa-notes-medical"></i> Appointments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'clients' %}">
+                            <i class="fas fa-user"></i> Clients
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Calendar</h1>
+            </div>
+
+            <!-- FullCalendar -->
+            <div id="calendar"></div>
+        </main>
+    </div>
+</div>
+
+<!-- FullCalendar Dependencies -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.0.0/dist/fullcalendar.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.0.0/dist/fullcalendar.min.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: {{ events|safe }},
+            editable: true,
+            selectable: true,
+        });
+
+        calendar.render();
+    });
+</script>
+{% endblock %}

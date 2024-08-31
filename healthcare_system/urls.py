@@ -22,4 +22,8 @@ from clients import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('clients/', views.clients, name='clients'),
+    path('clients/create/', views.create_client, name='create_client'),
+    path('appointments', views.appointments, name='appointments'),
+    path('calendar', views.calendar, name='calendar'),
 ]
